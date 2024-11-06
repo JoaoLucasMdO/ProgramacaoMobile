@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Button, StyleSheet } from "react-native";
+import { View, Text, TextInput, Button, StyleSheet, Alert } from "react-native";
 import axios from "axios";
 
 const CadastroScreen = () => {
@@ -14,11 +14,13 @@ const CadastroScreen = () => {
         { nome, email, senha }
       );
       console.log(response.data);
+      Alert.alert("Sucesso", response.data.message);
       setNome("");
       setEmail("");
       setSenha("");
     } catch (error) {
       console.error("Erro ao enviar dados:", error);
+      Alert.alert("Erro", "Ocorreu um erro ao cadastrar. Tente novamente.");
     }
   };
 
