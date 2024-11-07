@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { View, Text, FlatList, Button, StyleSheet } from "react-native";
 import axios from "axios";
+import { useNavigation } from "@react-navigation/native";
 
 const ConsultaScreen = () => {
   const [dados, setDados] = useState([]);
+  const navigation = useNavigation(); // Hook de navegação para acessar a navegação
 
   const handleConsulta = async () => {
     try {
@@ -12,6 +14,27 @@ const ConsultaScreen = () => {
     } catch (error) {
       console.log(`Erro: ${error}`);
     }
+  };
+
+  const renderUserData = ({ item }) => {
+    return (
+      <View style={styles.userContainer}>
+        <Text style={styles.userText}>Nome: {item.nome}</Text>
+        <Text style={styles.userText}>Email: {item.email}</Text>
+
+        <Button
+          title="Alterar Usuário"
+          onPress={() => navigation.navigate("Alteracao", { id: item.id })}
+          color="#03dac6"
+        />
+
+        <Button
+          title="Deletar Usuário"
+          onPress={() => navigation.navigate("Apagar", { id: item.id })}
+          color="#ff3b30"
+        />
+      </View>
+    );
   };
 
   return (
@@ -24,15 +47,6 @@ const ConsultaScreen = () => {
         renderItem={renderUserData}
         contentContainerStyle={styles.resultContainer}
       />
-    </View>
-  );
-};
-
-const renderUserData = ({ item }) => {
-  return (
-    <View style={styles.userContainer}>
-      <Text style={styles.userText}>Nome: {item.nome}</Text>
-      <Text style={styles.userText}>Email: {item.email}</Text>
     </View>
   );
 };
