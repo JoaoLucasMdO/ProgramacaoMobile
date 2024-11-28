@@ -14,7 +14,7 @@ const AtualizaScreen = () => {
   const fetchUserData = async () => {
     try {
       const response = await axios.get(
-        `http://10.68.153.97:3000/api/consulta/${userId}`
+        `http://10.68.152.149:3000/api/consulta/${userId}`
       );
       const { nome, email, senha } = response.data;
       setNome(nome);
@@ -41,7 +41,7 @@ const AtualizaScreen = () => {
 
     try {
       const response = await axios.put(
-        `http://10.68.153.97:3000/api/atualizacao/${userId}`,
+        `http://10.68.152.149:3000/api/atualizacao/${userId}`,
         {
           nome,
           email,

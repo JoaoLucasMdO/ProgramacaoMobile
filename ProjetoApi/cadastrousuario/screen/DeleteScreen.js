@@ -21,7 +21,7 @@ const DeleteScreen = ({ route, navigation }) => {
 
     try {
       const response = await axios.delete(
-        `http://10.68.153.97:3000/api/deletar/${userId}`
+        `http://10.68.152.149:3000/api/deletar/${userId}`
       );
       Alert.alert("Sucesso", response.data.message);
       setUserId("");
